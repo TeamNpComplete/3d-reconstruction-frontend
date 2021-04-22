@@ -9,6 +9,9 @@ export class ImageContainerComponent implements OnInit {
 
   @Output('delete') delete : EventEmitter<string> = new EventEmitter();
   @Input('url') imageUrl = "assets/img/upload/upload_512.png";
+
+  mouseOver : boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -16,5 +19,13 @@ export class ImageContainerComponent implements OnInit {
 
   onDeleteClicked() {
     this.delete.emit(this.imageUrl);
+  }
+
+  onMouseOver() {
+    this.mouseOver = true;
+  }
+
+  onMouseLeave() {
+    this.mouseOver = false;
   }
 }
