@@ -1,7 +1,21 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2" *ngFor="let url of imageUrlList">
-            <app-image-container (delete)="onImageDeleteClicked($event)" [url]="url"></app-image-container>
+<div class="image-preview">
+    <div class="container-fluid" *ngIf="imageList.length > 0">
+        <div class="row">
+            <div class="col-md-2" *ngFor="let image of imageList">
+                <app-image-container (delete)="onImageDeleteClicked($event)" [url]="image.url" [name]="image.name"></app-image-container>
+            </div>
+            <div class="col-md-2">
+                <div class="add-files text-center d-flex align-items-center justify-content-center">
+                    <input type="file" #fileDropRef id="fileDropRef" multiple accept="image/png,image/jpeg" (change)="fileBrowseHandler($event)">
+                    <button class="btn btn-default btn-circle"> 
+                        <img src="assets/img/add-file/add-file_64.png" alt="Add Files">    
+                    </button>
+                </div>
+            </div>
         </div>
+    </div>
+    
+    <div class="container-fluid justify-content-center drag-drop" *ngIf="imageList.length === 0">
+        <app-drag-drop-images (files-added)="fileBrowseHandler($event)"></app-drag-drop-images>
     </div>
 </div>
