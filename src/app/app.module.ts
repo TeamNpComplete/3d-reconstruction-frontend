@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DragDropImagesComponent } from './components/drag-drop-images/drag-drop-images.component';
 import { ImageContainerComponent } from './components/image-container/image-container.component';
+import { ImagesPreviewComponent } from './layouts/images-preview/images-preview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DragDropImagesComponent,
-    ImageContainerComponent
+    ImageContainerComponent,
+    ImagesPreviewComponent
   ],
   imports: [
     BrowserModule,
