@@ -33,3 +33,9 @@ button:hover {
     height: auto;
     padding: 10px;
 }
+
+.text-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
