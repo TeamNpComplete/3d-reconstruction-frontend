@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-drag-drop-images',
@@ -7,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DragDropImagesComponent implements OnInit {
 
+  @Output('files-added') filesAdded : EventEmitter<Event> = new EventEmitter();
+
+  imageList : { name : string, url : string }[] = []
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public fileBrowseHandler(event : Event) {
-    let files = (event.target as HTMLInputElement).files;
-    console.log(files);
+  fileBrowseHandler(event : Event) {
+      this.filesAdded.emit(event);
   }
-
 }
