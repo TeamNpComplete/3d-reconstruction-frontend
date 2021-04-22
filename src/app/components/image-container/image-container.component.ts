@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-image-container',
@@ -7,13 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImageContainerComponent implements OnInit {
 
+  @Output('delete') delete : EventEmitter<string> = new EventEmitter();
   @Input('url') imageUrl = "assets/img/upload/upload_512.png";
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onDelete() {
-    console.log('Delete Pressed !');
+  onDeleteClicked() {
+    this.delete.emit(this.imageUrl);
   }
 }

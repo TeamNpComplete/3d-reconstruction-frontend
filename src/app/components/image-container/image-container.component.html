@@ -1,3 +1,11 @@
-<div class="image-container">
-    <img [src]="imageUrl" alt="" class="img-fluid img-thumbnail">
+<div class="container d-flex flex-column justify-content-between">
+    <div class="row justify-content-center">
+        <button (click)="onDeleteClicked()"><img src="assets/img/delete/delete_24.png" alt="Delete"></button>
+    </div>
+    <div class="row image-container">
+        <img [src]="imageUrl" alt="" class="img-fluid img-thumbnail">
+    </div>
+    <div class="row justify-content-center">
+        Image-1
+    </div>
 </div>
