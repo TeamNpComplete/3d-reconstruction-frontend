@@ -1,21 +1,85 @@
-<div class="image-preview">
+<app-top-bar></app-top-bar>
+
+<div class="reconstruct-tab" *ngIf="!showModel">
+  <div class="image-preview">
     <div class="container-fluid" *ngIf="imageList.length > 0">
-        <div class="row">
-            <div class="col-md-2" *ngFor="let image of imageList">
-                <app-image-container (delete)="onImageDeleteClicked($event)" [url]="image.url" [name]="image.name"></app-image-container>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let image of imageList; let i=index">
+          <div class="row" style="height: 100%;">
+            <div class="col-md-4" *ngIf="i * 3 < imageList.length">
+              <app-image-container (delete)="onImageDeleteClicked($event)" [url]="imageList[i * 3].url"
+                [name]="imageList[i * 3].name">
+              </app-image-container>
             </div>
-            <div class="col-md-2">
-                <div class="add-files text-center d-flex align-items-center justify-content-center">
-                    <input type="file" #fileDropRef id="fileDropRef" multiple accept="image/png,image/jpeg" (change)="fileBrowseHandler($event)">
-                    <button class="btn btn-default btn-circle"> 
-                        <img src="assets/img/add-file/add-file_64.png" alt="Add Files">    
-                    </button>
-                </div>
+
+            <div class="col-md-4" *ngIf="i * 3 + 1 < imageList.length">
+              <app-image-container (delete)="onImageDeleteClicked($event)" [url]="imageList[i * 3 + 1].url"
+                [name]="imageList[i * 3 + 1].name">
+              </app-image-container>
             </div>
+
+            <div class="col-md-4" *ngIf="i * 3 + 2 < imageList.length">
+              <app-image-container (delete)="onImageDeleteClicked($event)" [url]="imageList[i * 3 + 2].url"
+                [name]="imageList[i * 3 + 2].name">
+              </app-image-container>
+            </div>
+
+            <div class="col-md-4" *ngIf="i === intDivideBy3(imageList.length)">
+              <div class="add-files text-center d-flex align-items-center justify-content-center">
+                <input type="file" #fileDropRef id="fileDropRef" multiple accept="image/png,image/jpeg"
+                  (change)="fileBrowseHandler($event)">
+                <button class="btn btn-default btn-circle add-files-btn" (click)="onAddFilesClicked()">
+                  <img src="assets/img/add-file/add-file_64.png" alt="Add Files">
+                </button>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </div>
     </div>
-    
-    <div class="container-fluid justify-content-center drag-drop" *ngIf="imageList.length === 0">
-        <app-drag-drop-images (files-added)="fileBrowseHandler($event)"></app-drag-drop-images>
+
+    <div class="container-fluid drag-drop text-center" *ngIf="imageList.length === 0">
+      <app-drag-drop-images (files-added)="fileBrowseHandler($event)"></app-drag-drop-images>
     </div>
+
+  </div>
+
+  <div class="container-fluid" *ngIf="imageList.length > 0">
+    <button class="btn btn-primary btn-rounded float-btn" data-toggle="modal" data-target="#progressModal"
+      (click)="onReconstructClicked()">RECONSTRUCT</button>
+  </div>
+
+  <div class="modal fade" id="progressModal" #progressModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog vertical-align-center">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <button id="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="progress form-group">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="showModel">
+  <div class="row">
+    <stl-model-viewer [stlModels]="[modelUrl]" [meshOptions]="[meshOptions]"></stl-model-viewer>
+  </div>
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-md-3 d-flex justify-content-center"><button class="btn btn-dark download-model-btn"
+        (click)="onDownloadModelClicked()">Download Model</button></div>
+    <div class="col-md-3 d-flex justify-content-center"><button class="btn btn-dark download-model-btn"
+        (click)="onSaveModelClicked()">Save Model</button></div>
+  </div>
 </div>

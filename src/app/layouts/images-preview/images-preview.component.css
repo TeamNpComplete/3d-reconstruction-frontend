@@ -1,26 +1,38 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
 .add-files {
   position: relative;
-  margin: 15px;
+  margin: 20px 0px;
   padding: 5px;
   height: 100%;
   width: 100%;
 }
 
-.add-files:hover {
-  background-color: rgb(238, 238, 238);
+.add-files-btn {
+  margin-top: 10px;
+  z-index: 5;
+}
+
+.add-files-btn:hover {
+  z-index: 5;
+  background-color: rgb(150, 150, 150);
+  cursor: pointer;
 }
 
 .btn-circle {
   position: absolute;
-  width: 175px;
-  height: 175px;
+  width: 145px;
+  height: 145px;
   text-align: center;
   padding: 6px 0;
   font-size: 12px;
   line-height: 1.42;
   border-radius: 50%;
-  top : 50%;
-  right : 50%;
+  top: 50%;
+  right: 50%;
   transform: translate(50%, -50%);
   background: rgb(200, 200, 200);
   text-align: center;
@@ -41,4 +53,61 @@ input {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60%;
+  height: 30%;
+}
+
+.float-btn {
+  z-index: 10;
+  position: fixed;
+  height: 60px;
+  bottom: 30px;
+  right: 30px;
+  padding: 10px;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.progress-dialog {
+  height: 100px;
+}
+
+.vertical-alignment-helper {
+  display: table;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.vertical-align-center {
+  /* To center vertically */
+  display: table-cell;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+.modal-content {
+  /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+  width: inherit;
+  max-width: inherit;
+  /* For Bootstrap 4 - to avoid the modal window stretching 
+  full width */
+  height: inherit;
+  /* To center horizontally */
+  margin: 0 auto;
+  pointer-events: all;
+}
+
+stl-model-viewer {
+  height: 80vh;
+  width: 100%;
+  object-fit: cover;
+  cursor: crosshair;
+}
+
+.download-model-btn {
+  padding: 20px;
+  min-width: 50%;
+  font-weight: bold;
 }
