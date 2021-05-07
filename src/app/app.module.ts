@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import { DragDropImagesComponent } from './components/drag-drop-images/drag-drop-images.component';
 import { ImageContainerComponent } from './components/image-container/image-container.component';
 import { ImagesPreviewComponent } from './layouts/images-preview/images-preview.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { StlModelViewerModule } from 'angular-stl-model-viewer';
 
 @NgModule({
   declarations: [
     AppComponent,
     DragDropImagesComponent,
     ImageContainerComponent,
-    ImagesPreviewComponent
+    ImagesPreviewComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    StlModelViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

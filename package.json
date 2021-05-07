@@ -19,9 +19,13 @@
     "@angular/platform-browser": "~11.2.7",
     "@angular/platform-browser-dynamic": "~11.2.7",
     "@angular/router": "~11.2.7",
+    "@types/three": "^0.127.1",
+    "angular-stl-model-viewer": "^3.2.0",
     "bootstrap": "^4.6.0",
+    "first-person-controls": "^1.0.1",
     "jquery": "^3.6.0",
     "rxjs": "~6.6.0",
+    "three": "^0.128.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
