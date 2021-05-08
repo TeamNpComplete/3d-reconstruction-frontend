@@ -7,7 +7,7 @@ import { apiConfiguration } from '../config/api.config';
 })
 export class ReconstructionService {
 
-    host: string = apiConfiguration.host;
+    host: string = apiConfiguration.reconstructionHost;
 
     constructor(private http: HttpClient) { }
 
