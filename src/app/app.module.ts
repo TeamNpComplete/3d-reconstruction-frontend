@@ -10,6 +10,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
 import { SavedModelsComponent } from './layouts/saved-models/saved-models.component';
+import { ModelViewerComponent } from './components/model-viewer/model-viewer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SavedModelsComponent } from './layouts/saved-models/saved-models.compon
     ImageContainerComponent,
     ImagesPreviewComponent,
     TopBarComponent,
-    SavedModelsComponent
+    SavedModelsComponent,
+    ModelViewerComponent
   ],
   imports: [
     BrowserModule,

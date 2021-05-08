@@ -1,8 +1,6 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MeshOptions } from 'angular-stl-model-viewer';
 import { ReconstructionService } from 'src/app/services/reconstruction.service';
-import { Vector3 } from 'three';
 
 @Component({
   selector: 'app-images-preview',
@@ -18,9 +16,7 @@ export class ImagesPreviewComponent implements OnInit {
   // 3D model properties
   showModel: boolean = false;
   modelUrl: string = '';
-  meshOptions: MeshOptions = {
-    scale: new Vector3(0.08, 0.08, 0.08)
-  }
+  
 
   constructor(private reconstructionService: ReconstructionService) { }
 
@@ -89,21 +85,6 @@ export class ImagesPreviewComponent implements OnInit {
         console.log(err);
       }
     )
-  }
-
-  onDownloadModelClicked() {
-    let popUpBlocked = ('' + window.open).indexOf('[native code]') === -1;
-    var anchor = document.createElement("a");
-    anchor.download = "model.stl";
-    anchor.href = this.modelUrl;
-    anchor.click();
-    if(popUpBlocked) {
-      alert('Allow pop-up to download !');
-    }
-  }
-
-  onSaveModelClicked() {
-
   }
 
   intDivideBy3(i: number) {

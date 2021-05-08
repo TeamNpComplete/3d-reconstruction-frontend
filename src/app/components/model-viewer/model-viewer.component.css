@@ -1,0 +1,12 @@
+stl-model-viewer {
+  height: 80vh;
+  width: 100%;
+  object-fit: cover;
+  cursor: crosshair;
+}
+
+.download-model-btn {
+  padding: 20px;
+  min-width: 50%;
+  font-weight: bold;
+}
