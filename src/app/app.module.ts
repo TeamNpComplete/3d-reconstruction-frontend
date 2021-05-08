@@ -26,6 +26,10 @@ import { SavedModelsComponent } from './layouts/saved-models/saved-models.compon
     HttpClientModule,
     StlModelViewerModule
   ],
+  entryComponents: [
+    ImagesPreviewComponent,
+    SavedModelsComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

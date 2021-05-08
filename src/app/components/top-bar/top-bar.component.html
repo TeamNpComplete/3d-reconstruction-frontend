@@ -9,11 +9,8 @@
 
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link">Reconstruct</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Saved Models</a>
+      <li class="nav-item" [ngClass]="{ 'active' : link === activeLink }" *ngFor="let link of links">
+        <a class="nav-link" [routerLink]="link.path" (click)="onLinkClicked(link)">{{link.text}}</a>
       </li>
     </ul>
   </div>
