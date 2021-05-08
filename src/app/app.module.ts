@@ -9,6 +9,7 @@ import { ImagesPreviewComponent } from './layouts/images-preview/images-preview.
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
+import { SavedModelsComponent } from './layouts/saved-models/saved-models.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { StlModelViewerModule } from 'angular-stl-model-viewer';
     DragDropImagesComponent,
     ImageContainerComponent,
     ImagesPreviewComponent,
-    TopBarComponent
+    TopBarComponent,
+    SavedModelsComponent
   ],
   imports: [
     BrowserModule,
