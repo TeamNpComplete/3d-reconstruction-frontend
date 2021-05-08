@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Vector3 } from 'three';
 import { MeshOptions } from 'angular-stl-model-viewer';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-model-viewer',
@@ -9,11 +10,16 @@ import { MeshOptions } from 'angular-stl-model-viewer';
 })
 export class ModelViewerComponent implements OnInit {
 
+  modelName: string = '';
+  isSaveDisabled: boolean = false;
   meshOptions: MeshOptions = {
     scale: new Vector3(0.08, 0.08, 0.08)
   }
 
-  @Input('modelUrl') modelUrl:string = '';
+  @Input('modelUrl') modelUrl: string = '';
+  @Input('enableSave') enableSave: boolean = false;
+
+  @Output('close') close: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
@@ -32,7 +38,20 @@ export class ModelViewerComponent implements OnInit {
   }
 
   onSaveModelClicked() {
-
+    console.log(this.modelName);
+    this.isSaveDisabled = true;
+    setTimeout(() => {
+      document.getElementById('closeSaveModal')?.click();
+      this.isSaveDisabled = false;
+    }, 3000);
   }
 
+  onCloseModelClicked() {
+    this.close.emit();
+  }
+
+  onModelNameChanged(event: Event) {
+    let value = (<HTMLInputElement>event.target).value;
+    this.modelName = value;
+  }
 }

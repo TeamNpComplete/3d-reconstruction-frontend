@@ -71,5 +71,5 @@
 </div>
 
 <div class="container-fluid" *ngIf="showModel">
-  <app-model-viewer [modelUrl]="modelUrl"></app-model-viewer>
+  <app-model-viewer [modelUrl]="modelUrl" [enableSave]="true" (close)="onModelViewerClosed()"></app-model-viewer>
 </div>

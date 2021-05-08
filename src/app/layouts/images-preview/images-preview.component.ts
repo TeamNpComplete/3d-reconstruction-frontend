@@ -87,6 +87,11 @@ export class ImagesPreviewComponent implements OnInit {
     )
   }
 
+  onModelViewerClosed() {
+    this.showModel = false;
+    this.imageList = [];
+  }
+
   intDivideBy3(i: number) {
     return Math.floor(i / 3);
   }

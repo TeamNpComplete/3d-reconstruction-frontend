@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StlModelViewerModule } from 'angular-stl-model-viewer';
 import { SavedModelsComponent } from './layouts/saved-models/saved-models.component';
 import { ModelViewerComponent } from './components/model-viewer/model-viewer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ModelViewerComponent } from './components/model-viewer/model-viewer.com
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StlModelViewerModule
+    StlModelViewerModule,
+    BrowserAnimationsModule,
+    MatInputModule
   ],
   entryComponents: [
     ImagesPreviewComponent,
