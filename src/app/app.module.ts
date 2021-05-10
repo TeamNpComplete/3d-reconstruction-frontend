@@ -13,6 +13,10 @@ import { SavedModelsComponent } from './layouts/saved-models/saved-models.compon
 import { ModelViewerComponent } from './components/model-viewer/model-viewer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
+import { HomeComponent } from './layouts/home/home.component';
+import { LoginSignupModalComponent } from './components/login-signup-modal/login-signup-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { MatInputModule } from '@angular/material/input';
     ImagesPreviewComponent,
     TopBarComponent,
     SavedModelsComponent,
-    ModelViewerComponent
+    ModelViewerComponent,
+    HomeComponent,
+    LoginSignupModalComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,10 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     StlModelViewerModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   entryComponents: [
     ImagesPreviewComponent,
