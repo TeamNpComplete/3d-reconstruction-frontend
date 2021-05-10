@@ -1,37 +1,23 @@
-:root {
-    --blue: #aeaeb1;
-    --indigo: #5603ad;
-    --purple: #8965e0;
-    --pink: #f3a4b5;
-    --red: #f5365c;
-    --orange: #fb6340;
-    --yellow: #ffd600;
-    --green: #2dce89;
-    --teal: #11cdef;
-    --cyan: #2bffc6;
-    --white: #fff;
-    --gray: #8898aa;
-    --gray-dark: #32325d;
-    --light: #ced4da;
-    --lighter: #e9ecef;
-    --primary: #5e72e4;
-    --secondary: #f7fafc;
-    --success: #2dce89;
-    --info: #11cdef;
-    --warning: #fb6340;
-    --danger: #f5365c;
-    --light: #9f9dbe;
-    --dark: #212529;
-    --default: #172b4d;
-    --white: #fff;
-    --neutral: #fff;
-    --darker: black;
-    --lol: #d6d4ee;
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-    --font-family-sans-serif: Open Sans, sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+* {
+    transition: 3s;
+}
+
+.container {
+    height: fit-content;
+    width: fit-content;
+}
+
+.backdrop {
+    z-index: 0;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.col-lg-5 {
+    position: relative;
+    z-index: 10;
 }

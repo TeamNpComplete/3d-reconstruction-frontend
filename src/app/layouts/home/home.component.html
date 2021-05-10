@@ -1,1 +1,5 @@
-<app-login-signup-modal></app-login-signup-modal>
+<button class="btn btn-primary" (click)="showLoginSignupModal = true">
+    Login/Signup
+</button>
+
+<app-login-signup-modal (close)="showLoginSignupModal = false" *ngIf="showLoginSignupModal"></app-login-signup-modal>
