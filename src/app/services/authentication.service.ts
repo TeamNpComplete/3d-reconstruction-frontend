@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { apiConfiguration } from '../config/api.config';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { apiConfiguration } from '../config/api.config';
 })
 export class AuthenticationService {
 
+    public authenticationStatus: Subject<boolean> = new Subject();
     static token : String = "";
 
     constructor(private http : HttpClient) { }
@@ -30,5 +32,9 @@ export class AuthenticationService {
 
     static isAuthenticated() {
         return AuthenticationService.token != null && AuthenticationService.token != "";
+    }
+
+    sendAuthenticationStatus(value: boolean) {
+        this.authenticationStatus.next(value);
     }
 }
