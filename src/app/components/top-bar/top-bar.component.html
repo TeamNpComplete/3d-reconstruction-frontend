@@ -1,15 +1,12 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-dark p-2">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
   <div class="mr-auto order-0">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-      <span class="navbar-toggler-icon"></span>
-    </button>
     <a class="navbar-brand ml-4"><b>3D Reconstruction</b></a>
   </div>
 
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" [ngClass]="{ 'active' : link === activeLink }" *ngFor="let link of links">
+      <li class="nav-item p-1" [ngClass]="{ 'active' : link === activeLink }" *ngFor="let link of links">
         <a class="nav-link" [routerLink]="link.path" (click)="onLinkClicked(link)">{{link.text}}</a>
       </li>
     </ul>
@@ -20,4 +17,8 @@
       <button class="btn btn-outline-danger my-2 my-sm-0 navbar-right" type="button">Logout</button>
     </div>
   </div>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 </nav>
