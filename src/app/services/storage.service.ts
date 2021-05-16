@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiConfiguration } from '../config/api.config';
+import { Model } from '../models/Model';
 
 @Injectable({
     providedIn: 'root'
@@ -34,14 +35,14 @@ export class StorageService {
         });
     }
 
-    getModelList(userId: string) {
+    getModelList(userId: string = '123456') {
         let requestUrl = this.host + apiConfiguration.retrieveModelListRoute;
 
         let queryParams = {
             userId : userId
         }
 
-        return this.http.get(requestUrl, { params: queryParams });
+        return this.http.get<{modelList : Model[]}>(requestUrl, { params: queryParams });
     }
 
     deleteModel(userId: string, modelName: string) {

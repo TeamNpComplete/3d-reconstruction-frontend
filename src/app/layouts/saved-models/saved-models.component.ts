@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Model } from 'src/app/models/Model';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-saved-models',
@@ -10,22 +11,34 @@ import { Model } from 'src/app/models/Model';
 })
 export class SavedModelsComponent implements OnInit {
 
-  data: Model[] = [
-    { modelId : 1, modelName : 'Model 1', size: parseFloat(Math.random().toFixed(2)), dateCreated : '12-08-2020'},
-    { modelId : 2, modelName : 'Model 2', size: parseFloat(Math.random().toFixed(2)), dateCreated : '12-08-2020'},
-    { modelId : 3, modelName : 'Model 3', size: parseFloat(Math.random().toFixed(2)), dateCreated : '12-08-2020'},
-    { modelId : 4, modelName : 'Model 4', size: parseFloat(Math.random().toFixed(2)), dateCreated : '12-08-2020'},
-    { modelId : 5, modelName : 'Model 5', size: parseFloat(Math.random().toFixed(2)), dateCreated : '12-08-2020'},
-    { modelId : 6, modelName : 'Model 6', size: parseFloat(Math.random().toFixed(2)), dateCreated : '12-08-2020'}
-  ];
+  inProgress : boolean = false;
 
+  data: Model[] = [];
   displayedColumns: string[] = ['modelId', 'modelName', 'dateCreated', 'size', 'delete'];
   dataSource = new MatTableDataSource(this.data);
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit() {
+  constructor(private storageService: StorageService) {}
 
+  ngOnInit() {
+    this.inProgress = true;
+
+    this.storageService.getModelList().subscribe(
+      (response) => {
+        let modelList = response.modelList;
+        modelList.forEach((model, index) => {
+          model.modelId = index;
+          this.data.push(model);
+        });
+
+        this.dataSource.data = this.data;
+        this.inProgress = false;
+      }, 
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 
   ngAfterViewInit() {
