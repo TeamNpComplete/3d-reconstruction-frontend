@@ -17,6 +17,10 @@ import { HomeComponent } from './layouts/home/home.component';
 import { LoginSignupModalComponent } from './components/login-signup-modal/login-signup-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatTableModule } from '@angular/material/table'; 
+import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     StlModelViewerModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule
