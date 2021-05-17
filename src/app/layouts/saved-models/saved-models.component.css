@@ -1,3 +1,12 @@
+.container-fluid {
+  position: relative;
+  height: 100%;
+}
+
+.table-container {
+  min-height: 84vh;
+}
+
 table {
   width: 100%;
 }
@@ -7,31 +16,36 @@ th.mat-sort-header-sorted {
 }
 
 th.mat-header-cell {
-    padding: 10px;
-    font-weight: bold;
+  padding: 10px;
+  font-weight: bold;
 }
 
 th.mat-header-cell:hover {
-    font-weight: bold;
-    color: rgb(40, 40, 40);
+  font-weight: bold;
+  color: rgb(40, 40, 40);
 }
 
 td.mat-cell {
-    padding: 10px;
+  padding: 10px;
 }
 
-.mat-row:hover{
-    background-color: lightgrey;
+.mat-row:hover:not(.disabled) {
+  background-color: lightgrey;
+  cursor: pointer;
 }
 
 .spinner-container {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.disabled {
+  background-color: rgba(211, 211, 211, 0.6);
 }
