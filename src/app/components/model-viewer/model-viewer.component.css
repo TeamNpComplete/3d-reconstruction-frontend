@@ -1,5 +1,7 @@
 .container-fluid {
-  height: 100vh;
+  height: fit-content;
+  min-height: 100vh;
+  object-fit: cover;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
