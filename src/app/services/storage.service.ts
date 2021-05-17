@@ -21,7 +21,7 @@ export class StorageService {
         });
     }
 
-    getModel(userId: string, modelName: string) {
+    getModel(modelName: string, userId: string = '123456') {
         let requestUrl = this.host + apiConfiguration.retrieveModelRoute;
 
         let queryParams = {
@@ -31,7 +31,8 @@ export class StorageService {
 
         return this.http.get(requestUrl, { 
             params: queryParams, 
-            observe: 'events' 
+            observe: 'events',
+            responseType: 'blob'
         });
     }
 
