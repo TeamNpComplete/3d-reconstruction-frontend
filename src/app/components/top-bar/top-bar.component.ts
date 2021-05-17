@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -11,25 +11,39 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class TopBarComponent implements OnInit, OnDestroy {
 
   isAuthenticated : boolean = false;
-  authenticationServiceSubscription !: Subscription;
 
   activeLink: { text: string, path: string} = { text: '', path: '' };
   links: Array<{text: string, path: string}> = [
     { text: 'Reconstruction', path: '/reconstruct' },
     { text: 'Saved Models', path: '/saved' }
   ];
-  
-  constructor(private router: Router, private authenticationService : AuthenticationService) { 
 
-  }
+  routerSubscription !: Subscription;
+  authenticationServiceSubscription !: Subscription;
+  
+  constructor(private router: Router, private authenticationService : AuthenticationService) { }
 
   ngOnInit(): void {
-    this.activeLink = this.links[0];
+    this.routerSubscription = this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationStart) {
+          let path = event.url;
+          this.activeLink = { text: '', path: '' };
+
+          for(let i = 0; i < this.links.length; i++) {
+            if(this.links[i].path === path)
+              this.activeLink = this.links[i];
+          }
+        }
+      }
+    )
+
     this.getAuthenticationStatus();
   }
 
   ngOnDestroy(): void {
     this.authenticationServiceSubscription.unsubscribe();
+    this.routerSubscription.unsubscribe();
   }
 
   onLinkClicked(link: { text: string, path: string }) {
@@ -43,5 +57,4 @@ export class TopBarComponent implements OnInit, OnDestroy {
       }
     )
   }
-
 }

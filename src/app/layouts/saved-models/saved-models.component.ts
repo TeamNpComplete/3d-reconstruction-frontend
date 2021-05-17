@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -11,9 +12,12 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class SavedModelsComponent implements OnInit {
 
-  inProgress : boolean = false;
+  inProgress: boolean = false;
+  modelUrl: string = '';
+  showModel: boolean = false;
 
   data: Model[] = [];
+  disabledRows: Model[] = [];
   displayedColumns: string[] = ['modelId', 'modelName', 'dateCreated', 'size', 'delete'];
   dataSource = new MatTableDataSource(this.data);
 
@@ -28,11 +32,11 @@ export class SavedModelsComponent implements OnInit {
       (response) => {
         let modelList = response.modelList;
         modelList.forEach((model, index) => {
-          model.modelId = index;
+          model.modelId = index + 1;
           this.data.push(model);
         });
 
-        this.dataSource.data = this.data;
+        this.updateTable();
         this.inProgress = false;
       }, 
       (err) => {
@@ -45,12 +49,65 @@ export class SavedModelsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  removeModel(model: Model) {
+    this.disabledRows.splice(this.disabledRows.indexOf(model), 1);
+    this.data.splice(this.data.indexOf(model), 1);
+    this.updateTable();
+  }
+
+  updateTable() {
+    this.dataSource.data = this.data;
+  }
+
   onModelSelected(model: Model) {
-    console.log(model);
+    if(this.disabledRows.indexOf(model) !== -1)
+      return;
+
+    this.inProgress = true;
+    this.storageService.getModel(model.modelName).subscribe(
+      (event) => {
+        if(event.type == HttpEventType.DownloadProgress) {
+          if(event.total != null) {
+            let progress = Math.round(100 * event.loaded / event.total);
+            console.log(`Download Completed : ${progress} %`);
+          }
+        } else if (event.type == HttpEventType.Response) {
+          console.log('Done');
+          console.log(event.body);
+          let url = window.URL.createObjectURL(event.body);
+          this.modelUrl = url;
+          this.showModel = true
+        } else {
+          console.log('Waiting ...')
+        }
+      }, 
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        this.inProgress = false;
+      }
+    )
   }
 
   onDeleteModel(model: Model) {
-    console.log(model);
+    this.disabledRows.push(model);
+
+    this.storageService.deleteModel('123456', model.modelName).subscribe(
+      (response) => {
+        console.log(response);
+      }, 
+      (err) => {
+        console.log(err);
+        this.disabledRows.splice(this.disabledRows.indexOf(model), 1);
+      },
+      () => {
+        this.removeModel(model);
+      }
+    )
   }
 
+  onModelViewerClosed() {
+    this.showModel = false;
+  }
 }
