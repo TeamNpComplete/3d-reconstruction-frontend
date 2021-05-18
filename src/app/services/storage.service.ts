@@ -13,7 +13,7 @@ export class StorageService {
     constructor(private http: HttpClient) { }
 
     saveModel(data: FormData) {
-        let requestUrl = this.host + apiConfiguration.reconstructionRoute;
+        let requestUrl = this.host + apiConfiguration.storeModelRoute;
 
         return this.http.post(requestUrl, data, {
             reportProgress: true, 

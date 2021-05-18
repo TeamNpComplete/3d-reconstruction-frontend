@@ -2,6 +2,8 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Vector3 } from 'three';
 import { MeshOptions } from 'angular-stl-model-viewer';
 import { EventEmitter } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-model-viewer',
@@ -9,6 +11,9 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./model-viewer.component.css']
 })
 export class ModelViewerComponent implements OnInit {
+
+  progress: number = 0;
+  inProgress = false;
 
   modelName: string = '';
   isSaveDisabled: boolean = false;
@@ -21,7 +26,7 @@ export class ModelViewerComponent implements OnInit {
 
   @Output('close') close: EventEmitter<void> = new EventEmitter();
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit(): void {
   }
@@ -37,13 +42,42 @@ export class ModelViewerComponent implements OnInit {
     }
   }
 
-  onSaveModelClicked() {
-    console.log(this.modelName);
+  async onSaveModelClicked() {
     this.isSaveDisabled = true;
-    setTimeout(() => {
-      document.getElementById('closeSaveModal')?.click();
-      this.isSaveDisabled = false;
-    }, 3000);
+
+    let data: FormData = new FormData();
+    data.append('userId', '123456');
+    data.append('modelName', this.modelName);
+
+    let file = await fetch(this.modelUrl).then(r => r.blob()).then(blobFile => new File([blobFile], "model.stl", { type: "model/stl" }))
+    data.append("file", file, file.name);
+
+    document.getElementById('closeSaveModal')?.click();
+    this.inProgress = true;
+    this.storageService.saveModel(data).subscribe(
+      (event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if(event.total != null)
+            this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          console.log('Done');
+          console.log(event.body);
+        } else {
+          console.log('Waiting !!!');
+        }
+      },
+
+      (err) => {
+        this.progress = 0;
+        console.log("Failed to upload");
+        console.log(err);
+      },
+
+      () => {
+        this.inProgress = false;
+        this.isSaveDisabled = false;
+      }
+    );
   }
 
   onCloseModelClicked() {
