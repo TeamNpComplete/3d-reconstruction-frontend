@@ -3,6 +3,25 @@
   margin: 0px;
 }
 
+.reconstruct-tab {
+  background-color: white;
+  height: 100%;
+}
+
+.image-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:whitesmoke;
+  height: 100%;
+}
+
+.relative-container {
+  position: relative;
+  padding-bottom: 5vh;
+}
+
 .add-files {
   position: relative;
   margin: 20px 0px;
@@ -48,12 +67,8 @@ input {
 }
 
 .drag-drop {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 30%;
+  padding: 10px;
+  background-color:cornflowerblue;
 }
 
 .float-btn {
@@ -97,4 +112,17 @@ input {
   /* To center horizontally */
   margin: 0 auto;
   pointer-events: all;
+}
+
+.spinner-container {
+  z-index: 20;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }

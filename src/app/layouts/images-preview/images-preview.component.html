@@ -1,5 +1,5 @@
 <div class="reconstruct-tab" *ngIf="!showModel">
-  <div class="image-preview">
+  <div class="image-preview" [ngClass]="{ 'relative-container' : imageList.length !== 0 }">
     <div class="container-fluid" *ngIf="imageList.length > 0">
       <div class="row">
         <div class="col-md-4" *ngFor="let image of imageList; let i=index">
@@ -37,7 +37,11 @@
       </div>
     </div>
 
-    <div class="container-fluid drag-drop text-center" *ngIf="imageList.length === 0">
+    <div class="spinner-container" *ngIf="inProgress">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="container drag-drop text-center" *ngIf="imageList.length === 0">
       <app-drag-drop-images (files-added)="fileBrowseHandler($event)"></app-drag-drop-images>
     </div>
 
@@ -46,27 +50,6 @@
   <div class="container-fluid" *ngIf="imageList.length > 0">
     <button class="btn btn-primary btn-rounded float-btn" data-toggle="modal" data-target="#progressModal"
       (click)="onReconstructClicked()">RECONSTRUCT</button>
-  </div>
-
-  <div class="modal fade" id="progressModal" #progressModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true" data-keyboard="false" data-backdrop="static">
-    <div class="vertical-alignment-helper">
-      <div class="modal-dialog vertical-align-center">
-        <div class="modal-content">
-          <div class="modal-header border-bottom-0">
-            <button id="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="progress form-group">
-              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 

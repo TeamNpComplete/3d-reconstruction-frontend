@@ -12,6 +12,7 @@ export class ImagesPreviewComponent implements OnInit {
   // Image Preview properties
   imageList : { name : string, url : string, file : File }[] = [];
   progress: number = 0;
+  inProgress: boolean = false;
   
   // 3D model properties
   showModel: boolean = false;
@@ -63,6 +64,8 @@ export class ImagesPreviewComponent implements OnInit {
       formData.append("files", this.imageList[i].file, this.imageList[i].name);
     }
 
+    this.inProgress = true;
+
     this.reconstructionService.getReconstructedModel(formData).subscribe(
       (event) => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -83,6 +86,10 @@ export class ImagesPreviewComponent implements OnInit {
         this.progress = 0;
         console.log("Failed to upload");
         console.log(err);
+      },
+
+      () => {
+        this.inProgress = false;
       }
     )
   }
