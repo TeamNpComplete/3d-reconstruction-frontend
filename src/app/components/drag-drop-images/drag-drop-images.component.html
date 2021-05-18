@@ -1,6 +1,9 @@
-<div class="dropzone d-flex flex-column justify-content-center align-items-center">
-    <input type="file" #fileDropRef id="fileDropRef" multiple accept="image/png,image/jpeg" (change)="fileBrowseHandler($event)">
-    <img src="assets/img/add-file/add-file_64.png" alt="">
-    <button class="btn btn-primary text-wrap">CHOOSE FILES</button>
-    <p>or drop images here</p>
+<div class="dropzone container-fluid d-flex flex-column justify-content-center align-items-center">
+  <input type="file" #fileDropRef id="fileDropRef" multiple accept="image/png,image/jpeg"
+    (change)="fileBrowseHandler($event)">
+  <span class="material-icons-outlined mb-2" style="color: white; font-size: 64px;">
+    add_photo_alternate
+  </span>
+  <button class="btn btn-light text-wrap">CHOOSE IMAGES</button>
+  <p>or drop images here</p>
 </div>

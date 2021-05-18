@@ -3,9 +3,10 @@
   height: 100%;
   padding: 2rem;
   text-align: center;
-  border: dashed 1px #979797;
+  border: dashed 2px grey;
   position: relative;
   margin: 0 auto;
+  background-color: rgb(69, 125, 228);
 }
 
 .dropzone input {
@@ -39,5 +40,5 @@
   font-weight: 400;
   padding-top: 12px;
   text-align: center;
-  color: #38424c;
+  color: white;
 }
