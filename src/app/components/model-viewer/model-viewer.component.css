@@ -7,7 +7,7 @@
 
 stl-model-viewer {
   height: 70vh;
-  width: 50%;
+  min-width: 50%;
   object-fit: cover;
   cursor: crosshair;
 }
@@ -32,4 +32,27 @@ stl-model-viewer {
 
 .example-full-width {
   width: 100%;
+}
+
+@media (max-width:800px) {
+  stl-model-viewer {
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    cursor: crosshair;
+    margin: 0px 20px;
+  }
+
+  .download-model-btn {
+    padding: 20px;
+    width: 100%;
+    font-weight: bold;
+    margin: 10px;
+  }
+
+  .save-model-btn {
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+  }
 }

@@ -5,6 +5,7 @@
 
 .table-container {
   min-height: 84vh;
+  background-color: white;
 }
 
 table {

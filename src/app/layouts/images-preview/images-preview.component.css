@@ -19,6 +19,7 @@
 
 .relative-container {
   position: relative;
+  justify-content: start;
   padding-bottom: 5vh;
 }
 

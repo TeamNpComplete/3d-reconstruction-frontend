@@ -9,7 +9,6 @@ export class DragDropImagesComponent implements OnInit {
 
   @Output('files-added') filesAdded : EventEmitter<Event> = new EventEmitter();
 
-  imageList : { name : string, url : string }[] = []
   constructor() { }
 
   ngOnInit(): void {
@@ -17,5 +16,9 @@ export class DragDropImagesComponent implements OnInit {
 
   fileBrowseHandler(event : Event) {
       this.filesAdded.emit(event);
+  }
+
+  onChooseImageClicked() {
+    document.getElementById('fileDropRef')?.click();
   }
 }
