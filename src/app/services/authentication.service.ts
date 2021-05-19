@@ -36,6 +36,10 @@ export class AuthenticationService {
     }
 
     public sendAuthenticationStatus(value: boolean) {
+        if(!value) {
+            this.token = '';
+        }
+
         this.isLoggedIn = value;
         this.authenticationStatus.next(value);
     }

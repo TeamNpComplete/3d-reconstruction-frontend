@@ -21,7 +21,6 @@ export class TopBarComponent implements OnInit, OnDestroy {
   
   constructor(private router: Router, private authenticationService : AuthenticationService, private topBarService: TopBarService) { 
     this.getAuthenticationStatus();
-    this.authenticationService.sendAuthenticationStatus(true);
   }
 
   ngOnInit(): void {
@@ -68,6 +67,8 @@ export class TopBarComponent implements OnInit, OnDestroy {
             { text: 'Reconstruction', path: '/' },
             { text: 'Saved Models', path: '/saved' }
           ];
+
+          this.activeLink = this.links[0];
         } else {
           this.links = [];
         }

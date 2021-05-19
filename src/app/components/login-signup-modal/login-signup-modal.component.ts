@@ -38,7 +38,8 @@ export class LoginSignupModalComponent implements OnInit {
         this.authenticationService.sendAuthenticationStatus(true);
         loginSubscription.unsubscribe();
         console.log(this.authenticationService.isAuthenticated());
-        this.router.navigate(['/dashboard']);
+        this.close.emit();
+        this.router.navigate(['/']);
       },
       (error) => {
         this.invalidCredentials = true;
@@ -59,7 +60,8 @@ export class LoginSignupModalComponent implements OnInit {
         console.log(response);
         this.authenticationService.sendAuthenticationStatus(true);
         registrationSubscription.unsubscribe();
-        this.router.navigate(['/dashboard']);
+        this.close.emit();
+        this.router.navigate(['/']);
       },
       (error) => {
         this.registrationFailed = true;
