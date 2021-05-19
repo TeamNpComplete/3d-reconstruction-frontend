@@ -8,7 +8,7 @@ export let features: Feature[] = [
     },
 
     {
-        icon: "assets/img/feature-icons/file_protection.svg",
+        icon: "assets/img/feature-icons/additional_docs.svg",
         title: "File protection guaranteed",
         content: "We use SSL encryption to ensure that your images are entirely secure throughout the transfer. Nobody will have access to your files, which we will also erase after one hour of processing"
     },

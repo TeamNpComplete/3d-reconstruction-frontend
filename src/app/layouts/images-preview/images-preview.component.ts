@@ -16,10 +16,10 @@ import { TopBarService } from 'src/app/services/top-bar.service';
     trigger('fade', [      
       transition('void => *', [
         style({opacity: 0}),
-        animate(500, style({opacity: 1}))
+        animate(100, style({opacity: 1}))
       ]),
       transition('* => void', [
-        animate(500, style({opacity: 0}))
+        animate(100, style({opacity: 0}))
       ])
     ])
   ]
@@ -161,5 +161,9 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  onGetStartedClicked() {
+    this.showLoginSignupModal = true;
   }
 }

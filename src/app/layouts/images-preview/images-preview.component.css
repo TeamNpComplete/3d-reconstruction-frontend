@@ -32,6 +32,11 @@
   width: 100%;
 }
 
+.steps-container {
+  border-top: 1px solid rgb(189, 189, 189);
+  border-bottom: 1px solid rgb(189, 189, 189);
+}
+
 .feature-box {
   margin-top: 2vh;
   display: flex;
@@ -42,7 +47,7 @@
 }
 
 .main-title {
-  margin-bottom: 9vh;
+  margin-bottom: 5vh;
   margin-top: 9vh;
 } 
 
@@ -74,7 +79,7 @@
 .feature-content {
   padding: 10px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 
@@ -191,12 +196,15 @@ input {
   z-index: 10;
 }
 
-/* .model-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
+.steps-container {
   width: 100%;
-  object-fit: cover;
-  background-color: red;
-} */
+  padding: 40px;
+}
+
+li {
+  padding: 7px;
+}
+
+.get-started-btn button {
+  font-weight: bold;
+}
