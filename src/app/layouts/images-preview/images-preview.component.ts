@@ -2,6 +2,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { features } from 'src/app/data/features';
+import { Feature } from 'src/app/models/Feature';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ReconstructionService } from 'src/app/services/reconstruction.service';
 import { TopBarService } from 'src/app/services/top-bar.service';
@@ -28,6 +30,8 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
   showLoginSignupModal: boolean = false;
   authenticationServiceSubscription!: Subscription;
   topBarSubscription!: Subscription;
+
+  featureList: Feature[] = features;
 
   // Image Preview properties
   imageList : { name : string, url : string, file : File }[] = [];
@@ -110,9 +114,9 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
         } else if (event instanceof HttpResponse) {
           console.log('Done');
           let url = window.URL.createObjectURL(event.body);
-          document.getElementById('closeModal')?.click();
           this.modelUrl = url;
           this.showModel = true;
+          console.log(this.showModel);
         } else {
           console.log('Waiting !!!');
         }

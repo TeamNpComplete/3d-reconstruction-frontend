@@ -1,3 +1,7 @@
+<div class="container-fluid model-container" *ngIf="showModel">
+  <app-model-viewer [modelUrl]="modelUrl" [enableSave]="true" (close)="onModelViewerClosed()"></app-model-viewer>
+</div>
+
 <div class="reconstruct-tab" *ngIf="!showModel">
   <div class="image-preview" [ngClass]="{ 'relative-container' : imageList.length !== 0 }">
     <div class="container-fluid" *ngIf="imageList.length > 0">
@@ -41,9 +45,37 @@
       <mat-spinner></mat-spinner>
     </div>
 
-    <div class="container">
-      <div class="container drag-drop text-center" *ngIf="imageList.length === 0">
-        <app-drag-drop-images (files-added)="fileBrowseHandler($event)" (click)="checkLogInStatus()" [disabled]="!isLoggedIn"></app-drag-drop-images>
+    <div class="container info-container" *ngIf="imageList.length === 0">
+
+      <div class="main-title">
+        <div class="primary-title">
+          <p>3D Reconstruction</p>
+        </div>
+        <div class="secondary-title">
+          <p>The best webapp to convert 2D Images to 3D model</p>
+        </div>
+      </div>
+
+      <div class="container drag-drop text-center">
+        <app-drag-drop-images (files-added)="fileBrowseHandler($event)" (click)="checkLogInStatus()"
+          [disabled]="!isLoggedIn"></app-drag-drop-images>
+      </div>
+
+      <div class="features mt-5">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4 feature-box" *ngFor="let feature of featureList">
+              <div class="icon">
+                <img [src]="feature.icon" alt="">
+              </div>
+              <div class="title">
+                <h6>{{ feature.title }}</h6>
+              </div>
+              <div class="feature-content">
+                {{ feature.content }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -54,10 +86,6 @@
   </div>
 </div>
 
-<div class="container-fluid" *ngIf="showModel">
-  <app-model-viewer [modelUrl]="modelUrl" [enableSave]="true" (close)="onModelViewerClosed()"></app-model-viewer>
-</div>
-
 <div class="login-signup-modal" *ngIf="showLoginSignupModal" @fade>
   <app-login-signup-modal (close)="showLoginSignupModal = false"></app-login-signup-modal>
-</div> 
+</div>

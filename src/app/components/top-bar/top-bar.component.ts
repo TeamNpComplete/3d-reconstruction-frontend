@@ -52,6 +52,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
     this.authenticationService.sendAuthenticationStatus(false);
     this.topBarService.sendLoginClicked(false);
     this.router.navigate(['/']);
+    window.location.reload();
   }
 
   onLoginClicked() {
