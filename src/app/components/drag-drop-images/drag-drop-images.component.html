@@ -1,9 +1,9 @@
-<div class="dropzone container-fluid d-flex flex-column justify-content-center align-items-center">
+<div class="dropzone container-fluid d-flex flex-column justify-content-center align-items-center" (click)="onChooseImageClicked($event, true)">
   <input type="file" #fileDropRef id="fileDropRef" multiple accept="image/png,image/jpeg"
-    (change)="fileBrowseHandler($event)">
+    (change)="fileBrowseHandler($event)" [disabled]="disabled" [ngStyle]="{ 'z-index' : (disabled) ? -5 : 5 }">
   <span class="material-icons-outlined mb-4" style="color: white; font-size: 64px;">
     add_photo_alternate
   </span>
-  <button class="btn btn-light text-wrap" (click)="onChooseImageClicked()">CHOOSE IMAGES</button>
+  <button class="btn btn-light text-wrap" (click)="onChooseImageClicked($event)">CHOOSE IMAGES</button>
   <p>or drop images here</p>
 </div>

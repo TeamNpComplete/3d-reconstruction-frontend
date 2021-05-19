@@ -41,10 +41,11 @@
       <mat-spinner></mat-spinner>
     </div>
 
-    <div class="container drag-drop text-center" *ngIf="imageList.length === 0">
-      <app-drag-drop-images (files-added)="fileBrowseHandler($event)"></app-drag-drop-images>
+    <div class="container">
+      <div class="container drag-drop text-center" *ngIf="imageList.length === 0">
+        <app-drag-drop-images (files-added)="fileBrowseHandler($event)" (click)="checkLogInStatus()" [disabled]="!isLoggedIn"></app-drag-drop-images>
+      </div>
     </div>
-
   </div>
 
   <div class="container-fluid" *ngIf="imageList.length > 0">
@@ -56,3 +57,7 @@
 <div class="container-fluid" *ngIf="showModel">
   <app-model-viewer [modelUrl]="modelUrl" [enableSave]="true" (close)="onModelViewerClosed()"></app-model-viewer>
 </div>
+
+<div class="login-signup-modal" *ngIf="showLoginSignupModal" @fade>
+  <app-login-signup-modal (close)="showLoginSignupModal = false"></app-login-signup-modal>
+</div> 

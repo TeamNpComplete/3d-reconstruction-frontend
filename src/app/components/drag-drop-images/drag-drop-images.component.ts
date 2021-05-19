@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-drag-drop-images',
@@ -7,7 +7,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class DragDropImagesComponent implements OnInit {
 
+  @Input('disabled') disabled: boolean = false;
   @Output('files-added') filesAdded : EventEmitter<Event> = new EventEmitter();
+  @Output('click') click: EventEmitter<Event> = new EventEmitter();
 
   constructor() { }
 
@@ -18,7 +20,12 @@ export class DragDropImagesComponent implements OnInit {
       this.filesAdded.emit(event);
   }
 
-  onChooseImageClicked() {
-    document.getElementById('fileDropRef')?.click();
+  onChooseImageClicked(event : Event, fromInput: boolean = false) {
+    event.stopPropagation()
+    if(!this.disabled) {
+      document.getElementById('fileDropRef')?.click();
+    } else {
+      this.click.emit(event);
+    }
   }
 }

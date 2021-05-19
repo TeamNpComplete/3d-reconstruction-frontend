@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ReconstructionService } from 'src/app/services/reconstruction.service';
@@ -5,9 +6,23 @@ import { ReconstructionService } from 'src/app/services/reconstruction.service';
 @Component({
   selector: 'app-images-preview',
   templateUrl: './images-preview.component.html',
-  styleUrls: ['./images-preview.component.css']
+  styleUrls: ['./images-preview.component.css'],
+  animations: [
+    trigger('fade', [      
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(500, style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        animate(500, style({opacity: 0}))
+      ])
+    ])
+  ]
 })
 export class ImagesPreviewComponent implements OnInit {
+
+  isLoggedIn: boolean = false;
+  showLoginSignupModal: boolean = false;
 
   // Image Preview properties
   imageList : { name : string, url : string, file : File }[] = [];
@@ -97,6 +112,12 @@ export class ImagesPreviewComponent implements OnInit {
   onModelViewerClosed() {
     this.showModel = false;
     this.imageList = [];
+  }
+
+  checkLogInStatus() {
+    if(!this.isLoggedIn) {
+      this.showLoginSignupModal = true;
+    }
   }
 
   intDivideBy3(i: number) {

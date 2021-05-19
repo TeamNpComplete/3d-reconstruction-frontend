@@ -13,10 +13,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
   isAuthenticated : boolean = false;
 
   activeLink: { text: string, path: string} = { text: '', path: '' };
-  links: Array<{text: string, path: string}> = [
-    { text: 'Reconstruction', path: '/reconstruct' },
-    { text: 'Saved Models', path: '/saved' }
-  ];
+  links: Array<{text: string, path: string}> = [];
 
   routerSubscription !: Subscription;
   authenticationServiceSubscription !: Subscription;
