@@ -32,11 +32,12 @@ export class LoginSignupModalComponent implements OnInit {
     this.invalidCredentials = false;
     let loginSubscription = this.authenticationService.login(form.value.email, form.value.password).subscribe(
       (response: any) => {
-        AuthenticationService.token = response['token'];
+        this.authenticationService.token = response['token'];
         console.log('Authentication Successful !');
         console.log(response);
+        this.authenticationService.sendAuthenticationStatus(true);
         loginSubscription.unsubscribe();
-        console.log(AuthenticationService.isAuthenticated());
+        console.log(this.authenticationService.isAuthenticated());
         this.router.navigate(['/dashboard']);
       },
       (error) => {
@@ -53,9 +54,10 @@ export class LoginSignupModalComponent implements OnInit {
     this.registrationFailed = false;
     let registrationSubscription = this.authenticationService.register(form.value.name, form.value.email, form.value.password).subscribe(
       (response: any) => {
-        AuthenticationService.token = response['token'];
+        this.authenticationService.token = response['token'];
         console.log('Registration Successful !');
         console.log(response);
+        this.authenticationService.sendAuthenticationStatus(true);
         registrationSubscription.unsubscribe();
         this.router.navigate(['/dashboard']);
       },

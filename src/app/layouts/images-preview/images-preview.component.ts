@@ -1,7 +1,10 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ReconstructionService } from 'src/app/services/reconstruction.service';
+import { TopBarService } from 'src/app/services/top-bar.service';
 
 @Component({
   selector: 'app-images-preview',
@@ -19,10 +22,12 @@ import { ReconstructionService } from 'src/app/services/reconstruction.service';
     ])
   ]
 })
-export class ImagesPreviewComponent implements OnInit {
+export class ImagesPreviewComponent implements OnInit, OnDestroy {
 
   isLoggedIn: boolean = false;
   showLoginSignupModal: boolean = false;
+  authenticationServiceSubscription!: Subscription;
+  topBarSubscription!: Subscription;
 
   // Image Preview properties
   imageList : { name : string, url : string, file : File }[] = [];
@@ -34,9 +39,25 @@ export class ImagesPreviewComponent implements OnInit {
   modelUrl: string = '';
   
 
-  constructor(private reconstructionService: ReconstructionService) { }
+  constructor(private reconstructionService: ReconstructionService, private authenticationService: AuthenticationService, private topBarService: TopBarService) { 
+    this.getAuthenticationStatus();
+  }
 
   ngOnInit(): void {
+    this.topBarSubscription = this.topBarService.loginButtonClicked.subscribe(
+      (value) => {
+        if(value) {
+          this.showLoginSignupModal = true;
+        } else {
+          this.imageList = [];
+        }
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.authenticationServiceSubscription.unsubscribe();
+    this.topBarSubscription.unsubscribe();
   }
 
   onImageDeleteClicked(imageUrl : string) {
@@ -122,5 +143,19 @@ export class ImagesPreviewComponent implements OnInit {
 
   intDivideBy3(i: number) {
     return Math.floor(i / 3);
+  }
+
+  getAuthenticationStatus() {
+    this.isLoggedIn = this.authenticationService.isAuthenticated();
+    this.authenticationServiceSubscription = this.authenticationService.authenticationStatus.subscribe(
+      (res: boolean) => {
+        this.isLoggedIn = res;
+        if(this.isLoggedIn) {
+
+        } else {
+
+        }
+      }
+    )
   }
 }

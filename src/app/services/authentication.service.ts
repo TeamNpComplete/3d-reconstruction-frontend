@@ -9,7 +9,8 @@ import { apiConfiguration } from '../config/api.config';
 export class AuthenticationService {
 
     public authenticationStatus: Subject<boolean> = new Subject();
-    static token : String = "";
+    token : String = "";
+    isLoggedIn: boolean = false;
 
     constructor(private http : HttpClient) { }
 
@@ -30,11 +31,12 @@ export class AuthenticationService {
         return this.http.post(requestUrl, { name : name, email : email, password : password});
     }
 
-    static isAuthenticated() {
-        return AuthenticationService.token != null && AuthenticationService.token != "";
+    public isAuthenticated() {
+        return this.isLoggedIn;
     }
 
-    sendAuthenticationStatus(value: boolean) {
+    public sendAuthenticationStatus(value: boolean) {
+        this.isLoggedIn = value;
         this.authenticationStatus.next(value);
     }
 }

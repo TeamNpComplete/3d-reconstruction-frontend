@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { TopBarService } from 'src/app/services/top-bar.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -18,7 +19,10 @@ export class TopBarComponent implements OnInit, OnDestroy {
   routerSubscription !: Subscription;
   authenticationServiceSubscription !: Subscription;
   
-  constructor(private router: Router, private authenticationService : AuthenticationService) { }
+  constructor(private router: Router, private authenticationService : AuthenticationService, private topBarService: TopBarService) { 
+    this.getAuthenticationStatus();
+    this.authenticationService.sendAuthenticationStatus(true);
+  }
 
   ngOnInit(): void {
     this.routerSubscription = this.router.events.subscribe(
@@ -34,8 +38,6 @@ export class TopBarComponent implements OnInit, OnDestroy {
         }
       }
     )
-
-    this.getAuthenticationStatus();
   }
 
   ngOnDestroy(): void {
@@ -47,10 +49,28 @@ export class TopBarComponent implements OnInit, OnDestroy {
     this.activeLink = link;
   }
 
+  onLogoutClicked() {
+    this.authenticationService.sendAuthenticationStatus(false);
+    this.topBarService.sendLoginClicked(false);
+    this.router.navigate(['/']);
+  }
+
+  onLoginClicked() {
+    this.topBarService.sendLoginClicked(true);
+  }
+
   getAuthenticationStatus() {
     this.authenticationServiceSubscription = this.authenticationService.authenticationStatus.subscribe(
       (res: boolean) => {
         this.isAuthenticated = res;
+        if(this.isAuthenticated) {
+          this.links = [
+            { text: 'Reconstruction', path: '/' },
+            { text: 'Saved Models', path: '/saved' }
+          ];
+        } else {
+          this.links = [];
+        }
       }
     )
   }
