@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(69, 125, 228);">
+<nav class="navbar navbar-expand-sm navbar-dark mat-elevation-z8" style="background-color: rgb(69, 125, 228);">
 
-  <div class="mr-auto order-0">
+  <div class="mr-auto order-0 heading">
     <a class="navbar-brand ml-4"><b>3D Reconstruction</b></a>
   </div>
 
-  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2 ml-3 mr-3">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" [ngClass]="{ 'active' : link === activeLink }" *ngFor="let link of links">
         <a class="nav-link" [routerLink]="link.path" (click)="onLinkClicked(link)">{{link.text}}</a>
