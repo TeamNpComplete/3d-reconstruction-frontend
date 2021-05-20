@@ -3,22 +3,21 @@
   margin: 0px;
 }
 
-.reconstruct-tab {
-  background-color: white;
-  height: 100%;
+.reconstruct-container {
+  object-fit: cover;
+  background-color: whitesmoke;
 }
 
 .image-preview {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color:whitesmoke;
   height: 100%;
 }
 
 .relative-container {
-  position: relative;
   justify-content: start;
   padding-bottom: 5vh;
 }
@@ -30,6 +29,7 @@
   align-items: center;
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .steps-container {
@@ -41,8 +41,6 @@
   margin-top: 2vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
   padding: 10px 30px;
 }
 
@@ -185,7 +183,7 @@ input {
   width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .login-signup-modal {

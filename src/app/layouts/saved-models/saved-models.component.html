@@ -1,4 +1,4 @@
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-5" *ngIf="!showModel">
 
   <div class="spinner-container" *ngIf="inProgress">
     <mat-spinner></mat-spinner>
@@ -43,8 +43,4 @@
   </div>
 </div>
 
-<div class="container-fluid" *ngIf="showModel"
-  style="position: absolute; height: fit-content; top: 0; left: 0; padding: 0;">
-  <app-model-viewer [modelUrl]="modelUrl" [enableSave]="false" (close)="onModelViewerClosed()" style="width: 100%;">
-  </app-model-viewer>
-</div>
+<app-model-viewer [modelUrl]="modelUrl" [modelName]="modelName" (close)="onModelViewerClosed()" *ngIf="showModel"></app-model-viewer>

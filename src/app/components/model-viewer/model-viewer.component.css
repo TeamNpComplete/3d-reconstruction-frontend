@@ -1,32 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container-fluid {
-  height: fit-content;
-  min-height: 100vh;
+  min-height: 100%;
   object-fit: cover;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.model-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.model-sidebar {
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  border-left: 1px solid rgb(204, 204, 204);
 }
 
 stl-model-viewer {
-  height: 70vh;
-  min-width: 50%;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
   cursor: crosshair;
 }
 
-.download-model-btn {
-  padding: 20px;
-  min-width: 65%;
+.action-btn {
+  padding: 10px;
+  width: 100%;
+  margin: 1rem;
   font-weight: bold;
 }
 
 .save-model-btn {
   padding: 10px;
-  min-width: 65%;
+  width: 100%;
   font-weight: bold;
 }
 
 .example-form {
-  min-width: 150px;
-  max-width: 500px;
   width: 100%;
 }
 
@@ -67,5 +86,5 @@ stl-model-viewer {
   width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
 }

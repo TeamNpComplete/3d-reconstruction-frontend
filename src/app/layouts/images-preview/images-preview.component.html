@@ -1,10 +1,8 @@
-<div class="container-fluid model-container" *ngIf="showModel">
-  <app-model-viewer [modelUrl]="modelUrl" [enableSave]="true" (close)="onModelViewerClosed()"></app-model-viewer>
-</div>
+<app-model-viewer [modelUrl]="modelUrl" [enableSave]="true" (close)="onModelViewerClosed()" *ngIf="showModel"></app-model-viewer>
 
-<div class="reconstruct-tab" *ngIf="!showModel">
-  <div class="image-preview" [ngClass]="{ 'relative-container' : imageList.length !== 0 }">
-    <div class="container-fluid" *ngIf="imageList.length > 0">
+<div class="reconstruct-container" *ngIf="!showModel">
+  <div class="image-preview relative-container" *ngIf="!showModel && imageList.length > 0">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-4" *ngFor="let image of imageList; let i=index">
           <div class="row" style="height: 100%;">
@@ -13,19 +11,19 @@
                 [name]="imageList[i * 3].name">
               </app-image-container>
             </div>
-
+  
             <div class="col-md-4" *ngIf="i * 3 + 1 < imageList.length">
               <app-image-container (delete)="onImageDeleteClicked($event)" [url]="imageList[i * 3 + 1].url"
                 [name]="imageList[i * 3 + 1].name">
               </app-image-container>
             </div>
-
+  
             <div class="col-md-4" *ngIf="i * 3 + 2 < imageList.length">
               <app-image-container (delete)="onImageDeleteClicked($event)" [url]="imageList[i * 3 + 2].url"
                 [name]="imageList[i * 3 + 2].name">
               </app-image-container>
             </div>
-
+  
             <div class="col-md-4" *ngIf="i === intDivideBy3(imageList.length)">
               <div class="add-files text-center d-flex align-items-center justify-content-center">
                 <input type="file" #fileDropRef id="fileDropRef" multiple accept="image/png,image/jpeg"
@@ -35,18 +33,19 @@
                 </button>
               </div>
             </div>
-
+  
           </div>
         </div>
       </div>
     </div>
-
-    <div class="spinner-container" *ngIf="inProgress">
-      <mat-spinner></mat-spinner>
-    </div>
-
-    <div class="container info-container" *ngIf="imageList.length === 0">
-
+  </div>
+  
+  <div class="spinner-container" *ngIf="inProgress">
+    <mat-spinner></mat-spinner>
+  </div>
+  
+  <div class="info-container" *ngIf="imageList.length === 0">
+    <div class="container ">
       <div class="main-title">
         <div class="primary-title">
           <p>3D Reconstruction</p>
@@ -55,12 +54,12 @@
           <p>The best webapp to convert 2D Images to 3D model</p>
         </div>
       </div>
-
+    
       <div class="container drag-drop text-center mb-5" *ngIf="isLoggedIn">
         <app-drag-drop-images (files-added)="fileBrowseHandler($event)" (click)="checkLogInStatus()"
           [disabled]="!isLoggedIn"></app-drag-drop-images>
       </div>
-
+    
       <div class="steps-container">
         <div class="row">
           <div class="col-md-6 text-center">
@@ -77,13 +76,13 @@
           </div>
         </div>
       </div>
-
+    
       <div class="get-started-btn mt-5 d-flex justify-content-center" style="width: 100%;" *ngIf="!isLoggedIn">
         <div class="col-md-4 center">
           <button class="btn btn-outline-primary rounded-pill p-3" style="width: 100%;" (click)="onGetStartedClicked()">Get Started</button>
         </div>
       </div>
-
+    
       <div class="features mt-5">
         <div class="container-fluid">
           <div class="row">
@@ -102,11 +101,11 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div class="container-fluid" *ngIf="imageList.length > 0">
-    <button class="btn btn-primary btn-rounded float-btn" data-toggle="modal" data-target="#progressModal"
-      (click)="onReconstructClicked()">RECONSTRUCT</button>
-  </div>
+<div class="container-fluid" *ngIf="imageList.length > 0">
+  <button class="btn btn-primary btn-rounded float-btn" data-toggle="modal" data-target="#progressModal"
+    (click)="onReconstructClicked()">RECONSTRUCT</button>
 </div>
 
 <div class="login-signup-modal" *ngIf="showLoginSignupModal" @fade>

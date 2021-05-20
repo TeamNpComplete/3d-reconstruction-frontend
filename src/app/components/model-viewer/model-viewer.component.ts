@@ -14,14 +14,15 @@ export class ModelViewerComponent implements OnInit {
 
   progress: number = 0;
   inProgress = false;
-
   modelName: string = '';
+
   isSaveDisabled: boolean = false;
   meshOptions: MeshOptions = {
     scale: new Vector3(0.08, 0.08, 0.08)
   }
 
   @Input('modelUrl') modelUrl: string = '';
+  @Input('modelName') inputName: string = '';
   @Input('enableSave') enableSave: boolean = false;
 
   @Output('close') close: EventEmitter<void> = new EventEmitter();
@@ -34,7 +35,7 @@ export class ModelViewerComponent implements OnInit {
   onDownloadModelClicked() {
     let popUpBlocked = ('' + window.open).indexOf('[native code]') === -1;
     var anchor = document.createElement("a");
-    anchor.download = "model.stl";
+    anchor.download = `${this.inputName}.stl`;
     anchor.href = this.modelUrl;
     anchor.click();
     if(popUpBlocked) {
@@ -62,6 +63,7 @@ export class ModelViewerComponent implements OnInit {
         } else if (event instanceof HttpResponse) {
           console.log('Done');
           console.log(event.body);
+          this.inputName = this.modelName;
         } else {
           console.log('Waiting !!!');
         }

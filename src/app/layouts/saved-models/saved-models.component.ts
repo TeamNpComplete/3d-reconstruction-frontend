@@ -14,6 +14,7 @@ export class SavedModelsComponent implements OnInit {
 
   inProgress: boolean = false;
   modelUrl: string = '';
+  modelName: string = '';
   showModel: boolean = false;
 
   data: Model[] = [];
@@ -76,6 +77,7 @@ export class SavedModelsComponent implements OnInit {
           console.log(event.body);
           let url = window.URL.createObjectURL(event.body);
           this.modelUrl = url;
+          this.modelName = model.modelName;
           this.showModel = true
         } else {
           console.log('Waiting ...')

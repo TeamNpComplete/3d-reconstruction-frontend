@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row d-flex justify-content-center pt-5">
     <stl-model-viewer [stlModels]="[modelUrl]" [meshOptions]="[meshOptions]"></stl-model-viewer>
   </div>
@@ -52,4 +52,36 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<div class="container-fluid" style="height: 100%; width: 100%;">
+  <div class="row h-100">
+    <div class="col-md-9 model-column">
+      <stl-model-viewer [stlModels]="[modelUrl]" [meshOptions]="[meshOptions]"></stl-model-viewer>
+    </div>
+    <div class="col-md-3 model-sidebar">
+      <form class="example-form text-center mt-5">
+        <h4 class="mb-3">Save Model on Cloud</h4>
+        <mat-form-field class="example-full-width mt-4">
+          <mat-label>Model Name</mat-label>
+          <input matInput placeholder="Enter Model Name" (input)="onModelNameChanged($event)" [value]="inputName">
+        </mat-form-field>
+
+        <button type="button" class="btn btn-outline-primary save-model-btn mt-3" [disabled]="modelName === '' || isSaveDisabled || modelName === inputName"
+          (click)="onSaveModelClicked()">
+          Save
+        </button>
+      </form>
+        <button class="btn btn-outline-primary action-btn mt-4"
+          (click)="onDownloadModelClicked()">Download
+        </button>
+        <button class="btn btn-outline-danger action-btn"
+          (click)="onCloseModelClicked()">Close
+        </button>
+    </div>
+  </div>
+</div>
+
+<div class="spinner-container" *ngIf="inProgress">
+  <mat-spinner></mat-spinner>
 </div>
