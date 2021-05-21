@@ -95,7 +95,7 @@ export class SavedModelsComponent implements OnInit {
   onDeleteModel(model: Model) {
     this.disabledRows.push(model);
 
-    this.storageService.deleteModel('123456', model.modelName).subscribe(
+    this.storageService.deleteModel(model.modelName).subscribe(
       (response) => {
         console.log(response);
       }, 

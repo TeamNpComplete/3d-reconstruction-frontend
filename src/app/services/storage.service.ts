@@ -1,59 +1,77 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiConfiguration } from '../config/api.config';
 import { Model } from '../models/Model';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class StorageService {
 
-    host: string = apiConfiguration.storageHost;
+    host: string = apiConfiguration.host;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
     saveModel(data: FormData) {
         let requestUrl = this.host + apiConfiguration.storeModelRoute;
 
+        let header: HttpHeaders = new HttpHeaders({
+            'Authorization': `Bearer ${this.authenticationService.token}`
+        });
+
         return this.http.post(requestUrl, data, {
+            headers: header,
             reportProgress: true, 
             observe: 'events'
         });
     }
 
-    getModel(modelName: string, userId: string = '123456') {
+    getModel(modelName: string) {
         let requestUrl = this.host + apiConfiguration.retrieveModelRoute;
 
+        let header: HttpHeaders = new HttpHeaders({
+            'Authorization': `Bearer ${this.authenticationService.token}`
+        });
+
         let queryParams = {
-            userId : userId,
             modelName : modelName
         }
 
         return this.http.get(requestUrl, { 
+            headers: header,
             params: queryParams, 
             observe: 'events',
             responseType: 'blob'
         });
     }
 
-    getModelList(userId: string = '123456') {
+    getModelList() {
         let requestUrl = this.host + apiConfiguration.retrieveModelListRoute;
 
-        let queryParams = {
-            userId : userId
-        }
+        let header: HttpHeaders = new HttpHeaders({
+            'Authorization': `Bearer ${this.authenticationService.token}`
+        });
 
-        return this.http.get<{modelList : Model[]}>(requestUrl, { params: queryParams });
+        return this.http.get<{modelList : Model[]}>(requestUrl, { 
+            headers: header
+        });
     }
 
-    deleteModel(userId: string, modelName: string) {
+    deleteModel(modelName: string) {
         let requestUrl = this.host + apiConfiguration.deleteModelRoute;
 
+        let header: HttpHeaders = new HttpHeaders({
+            'Authorization': `Bearer ${this.authenticationService.token}`
+        });
+
         let queryParams = {
-            userId : userId,
             modelName : modelName
         }
 
-        return this.http.delete(requestUrl, { params: queryParams });
+        return this.http.delete(requestUrl, { 
+            headers: header,
+            params: queryParams 
+        });
     }
 }

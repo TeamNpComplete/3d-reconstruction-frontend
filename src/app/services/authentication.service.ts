@@ -15,7 +15,7 @@ export class AuthenticationService {
     constructor(private http : HttpClient) { }
 
     login(email : String, password : String) {
-        let requestUrl = apiConfiguration.authenticationHost + apiConfiguration.usersLoginRoute;
+        let requestUrl = apiConfiguration.host + apiConfiguration.usersLoginRoute;
 
         let obj  = {
             email : email,
@@ -26,13 +26,13 @@ export class AuthenticationService {
     }
 
     register(name : String, email : String, password : String ) {
-        let requestUrl = apiConfiguration.authenticationHost + apiConfiguration.usersRegistrationRoute;
+        let requestUrl = apiConfiguration.host + apiConfiguration.usersRegistrationRoute;
         
         return this.http.post(requestUrl, { name : name, email : email, password : password});
     }
 
     public isAuthenticated() {
-        return this.isLoggedIn;
+        return this.isLoggedIn && this.token !== "";
     }
 
     public sendAuthenticationStatus(value: boolean) {
