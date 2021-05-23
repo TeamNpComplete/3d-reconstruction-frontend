@@ -97,8 +97,7 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
   onReconstructClicked() {
     const formData = new FormData();
     
-    formData.append('userId', '123456');
-    formData.append('modelName', 'Test2');
+    formData.append('modelName', 'Model');
 
     for(let i = 0; i < this.imageList.length; i++) {
       formData.append("files", this.imageList[i].file, this.imageList[i].name);
@@ -112,20 +111,14 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
           if(event.total != null)
             this.progress = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          console.log('Done');
           let url = window.URL.createObjectURL(event.body);
           this.modelUrl = url;
           this.showModel = true;
-          console.log(this.showModel);
-        } else {
-          console.log('Waiting !!!');
         }
       },
 
       (err) => {
         this.progress = 0;
-        console.log("Failed to upload");
-        console.log(err);
       },
 
       () => {
@@ -154,11 +147,6 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
     this.authenticationServiceSubscription = this.authenticationService.authenticationStatus.subscribe(
       (res: boolean) => {
         this.isLoggedIn = res;
-        if(this.isLoggedIn) {
-
-        } else {
-
-        }
       }
     )
   }

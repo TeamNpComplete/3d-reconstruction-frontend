@@ -61,18 +61,12 @@ export class ModelViewerComponent implements OnInit {
           if(event.total != null)
             this.progress = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
-          console.log('Done');
-          console.log(event.body);
           this.inputName = this.modelName;
-        } else {
-          console.log('Waiting !!!');
         }
       },
 
       (err) => {
         this.progress = 0;
-        console.log("Failed to upload");
-        console.log(err);
       },
 
       () => {

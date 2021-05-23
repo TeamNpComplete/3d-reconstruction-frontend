@@ -70,21 +70,15 @@ export class SavedModelsComponent implements OnInit {
         if(event.type == HttpEventType.DownloadProgress) {
           if(event.total != null) {
             let progress = Math.round(100 * event.loaded / event.total);
-            console.log(`Download Completed : ${progress} %`);
           }
         } else if (event.type == HttpEventType.Response) {
-          console.log('Done');
-          console.log(event.body);
           let url = window.URL.createObjectURL(event.body);
           this.modelUrl = url;
           this.modelName = model.modelName;
           this.showModel = true
-        } else {
-          console.log('Waiting ...')
         }
       }, 
       (err) => {
-        console.log(err);
       },
       () => {
         this.inProgress = false;
@@ -97,10 +91,8 @@ export class SavedModelsComponent implements OnInit {
 
     this.storageService.deleteModel(model.modelName).subscribe(
       (response) => {
-        console.log(response);
       }, 
       (err) => {
-        console.log(err);
         this.disabledRows.splice(this.disabledRows.indexOf(model), 1);
       },
       () => {

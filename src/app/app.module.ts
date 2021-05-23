@@ -13,7 +13,6 @@ import { SavedModelsComponent } from './layouts/saved-models/saved-models.compon
 import { ModelViewerComponent } from './components/model-viewer/model-viewer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { HomeComponent } from './layouts/home/home.component';
 import { LoginSignupModalComponent } from './components/login-signup-modal/login-signup-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -31,7 +30,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     TopBarComponent,
     SavedModelsComponent,
     ModelViewerComponent,
-    HomeComponent,
     LoginSignupModalComponent
   ],
   imports: [
