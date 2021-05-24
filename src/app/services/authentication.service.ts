@@ -43,4 +43,8 @@ export class AuthenticationService {
         this.isLoggedIn = value;
         this.authenticationStatus.next(value);
     }
+
+    public getAuthenticationStatus() {
+        return this.authenticationStatus;
+    }
 }

@@ -10,4 +10,8 @@ export class TopBarService {
     public sendLoginClicked(value: boolean) {
         this.loginButtonClicked.next(value);
     }
+
+    public getLoginButtonClicked() {
+        return this.loginButtonClicked;
+    }
 }

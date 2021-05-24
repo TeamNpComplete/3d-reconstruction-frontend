@@ -48,7 +48,7 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.topBarSubscription = this.topBarService.loginButtonClicked.subscribe(
+    this.topBarSubscription = this.topBarService.getLoginButtonClicked().subscribe(
       (value) => {
         if(value) {
           this.showLoginSignupModal = true;
@@ -144,7 +144,7 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
 
   getAuthenticationStatus() {
     this.isLoggedIn = this.authenticationService.isAuthenticated();
-    this.authenticationServiceSubscription = this.authenticationService.authenticationStatus.subscribe(
+    this.authenticationServiceSubscription = this.authenticationService.getAuthenticationStatus().subscribe(
       (res: boolean) => {
         this.isLoggedIn = res;
       }

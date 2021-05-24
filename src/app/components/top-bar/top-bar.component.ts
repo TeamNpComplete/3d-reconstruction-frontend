@@ -60,7 +60,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
   }
 
   getAuthenticationStatus() {
-    this.authenticationServiceSubscription = this.authenticationService.authenticationStatus.subscribe(
+    this.authenticationServiceSubscription = this.authenticationService.getAuthenticationStatus().subscribe(
       (res: boolean) => {
         this.isAuthenticated = res;
         if(this.isAuthenticated) {
