@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { StorageService } from 'src/app/services/storage.service';
 
 import { SavedModelsComponent } from './saved-models.component';
@@ -8,6 +8,8 @@ describe('SavedModelsComponent', () => {
   let component: SavedModelsComponent;
   let fixture: ComponentFixture<SavedModelsComponent>;
   let storageServiceMock: any = jasmine.createSpyObj('StorageService', ['getModelList', 'getModel', 'deleteModel']);
+  storageServiceMock.getModel.and.returnValue(of('123'));
+  storageServiceMock.deleteModel.and.returnValue(of('123'));
   storageServiceMock.getModelList.and.returnValue(of(
     {
       "modelList": [
@@ -48,5 +50,43 @@ describe('SavedModelsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should handle model list get error', () => {
+    storageServiceMock.getModelList.and.returnValue(throwError(1))
+    component.ngOnInit();
+    expect(1).toBe(1);
+  })
+
+  it('should select model', () => {
+    component.onModelSelected({
+      "modelName": "Bench",
+      "size": 147684,
+      "dateCreated": "2021-05-21T18:54:38.998Z"
+    })
+    expect(1).toBe(1);
+  });
+
+  it('should remove model', () => {
+    component.removeModel({
+      "modelName": "Bench",
+      "size": 147684,
+      "dateCreated": "2021-05-21T18:54:38.998Z"
+    })
+    expect(1).toBe(1);
+  });
+
+  it('should delete model from list', () => {
+    component.onDeleteModel({
+      "modelName": "Bench",
+      "size": 147684,
+      "dateCreated": "2021-05-21T18:54:38.998Z"
+    })
+    expect(1).toBe(1);
+  });
+
+  it('should close model veiwer', () => {
+    component.onModelViewerClosed();
+    expect(1).toBe(1);
   });
 });

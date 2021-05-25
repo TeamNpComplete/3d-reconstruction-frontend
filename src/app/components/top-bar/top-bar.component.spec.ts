@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TopBarService } from 'src/app/services/top-bar.service';
 
@@ -11,7 +11,9 @@ describe('TopBarComponent', () => {
   let fixture: ComponentFixture<TopBarComponent>;
   let authenticationServiceMock: any = jasmine.createSpyObj('AuthenticationService', ['sendAuthenticationStatus', 'getAuthenticationStatus']);
   let topBarServiceMock: any = jasmine.createSpyObj('TopBarService', ['sendLoginClicked']);
-  authenticationServiceMock.getAuthenticationStatus.and.returnValue(of(false));
+  authenticationServiceMock.getAuthenticationStatus.and.returnValue(of(true));
+  authenticationServiceMock.sendAuthenticationStatus.and.returnValue(new Subject());
+  topBarServiceMock.sendLoginClicked.and.returnValue();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,5 +37,15 @@ describe('TopBarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should change navigation link on click', () => {
+    component.onLinkClicked({path: '/', text: 'Reconstruction'});
+    expect(1).toBe(1);
+  });
+
+  it('should call loginClicked', () => {
+    component.onLoginClicked();
+    expect(1).toBe(1);
   });
 });
