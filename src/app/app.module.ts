@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     TopBarComponent,
     SavedModelsComponent,
     ModelViewerComponent,
-    LoginSignupModalComponent
+    LoginSignupModalComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

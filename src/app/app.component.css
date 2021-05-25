@@ -5,10 +5,20 @@
     min-height: fit-content;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: whitesmoke;
     object-fit: cover;
 }
 
 .router-wrapper {
+    background-color: whitesmoke;
     flex: 1;
+    flex-grow: 1;
+    padding-bottom: 2%;
+}
+
+.footer {
+    position: relative;
+    margin-top: 0;
+    clear: both;
 }
