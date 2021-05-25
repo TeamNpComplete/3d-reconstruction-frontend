@@ -93,8 +93,4 @@ describe('LoginSignupModalComponent', () => {
   afterEach(() => {
     document.body.removeChild(fixture.debugElement.nativeElement);
   })
-
-  // afterAll(() => {
-    
-  // })
 });

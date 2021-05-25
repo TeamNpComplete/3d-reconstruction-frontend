@@ -29,34 +29,30 @@ export class LoginSignupModalComponent implements OnInit {
 
   onLoginSubmit(form: NgForm) {
     this.invalidCredentials = false;
-    let loginSubscription = this.authenticationService.login(form.value.email, form.value.password).subscribe(
+    this.authenticationService.login(form.value.email, form.value.password).subscribe(
       (response: any) => {
         this.authenticationService.token = response['token'];
         this.authenticationService.sendAuthenticationStatus(true);
-        loginSubscription.unsubscribe();
         this.close.emit();
         this.router.navigate(['/']);
       },
       (error) => {
         this.invalidCredentials = true;
-        loginSubscription.unsubscribe();
       }
     );
   }
 
   onSignupSubmit(form: NgForm) {
     this.registrationFailed = false;
-    let registrationSubscription = this.authenticationService.register(form.value.name, form.value.email, form.value.password).subscribe(
+    this.authenticationService.register(form.value.name, form.value.email, form.value.password).subscribe(
       (response: any) => {
         this.authenticationService.token = response['token'];
         this.authenticationService.sendAuthenticationStatus(true);
-        registrationSubscription.unsubscribe();
         this.close.emit();
         this.router.navigate(['/']);
       },
       (error) => {
         this.registrationFailed = true;
-        registrationSubscription.unsubscribe();
       }
     )
   }
