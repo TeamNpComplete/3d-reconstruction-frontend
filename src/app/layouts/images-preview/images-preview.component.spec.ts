@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of, Subject } from 'rxjs';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ReconstructionService } from 'src/app/services/reconstruction.service';
-import { TopBarService } from 'src/app/services/top-bar.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { ReconstructionService } from 'src/app/services/reconstruction/reconstruction.service';
+import { TopBarService } from 'src/app/services/top-bar/top-bar.service';
 
 import { ImagesPreviewComponent } from './images-preview.component';
 

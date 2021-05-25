@@ -4,9 +4,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { features } from 'src/app/data/features';
 import { Feature } from 'src/app/models/Feature';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ReconstructionService } from 'src/app/services/reconstruction.service';
-import { TopBarService } from 'src/app/services/top-bar.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { ReconstructionService } from 'src/app/services/reconstruction/reconstruction.service';
+import { TopBarService } from 'src/app/services/top-bar/top-bar.service';
 
 @Component({
   selector: 'app-images-preview',

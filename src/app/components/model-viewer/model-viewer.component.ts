@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Vector3 } from 'three';
 import { MeshOptions } from 'angular-stl-model-viewer';
 import { EventEmitter } from '@angular/core';
-import { StorageService } from 'src/app/services/storage.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({

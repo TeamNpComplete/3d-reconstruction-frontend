@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { apiConfiguration } from '../config/api.config';
+import { apiConfiguration } from '../../config/api.config';
 
 @Injectable({
     providedIn : 'root'

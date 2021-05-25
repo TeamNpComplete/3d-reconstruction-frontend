@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Model } from 'src/app/models/Model';
-import { StorageService } from 'src/app/services/storage.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-saved-models',

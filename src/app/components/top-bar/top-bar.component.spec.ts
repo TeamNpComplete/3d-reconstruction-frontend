@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subject } from 'rxjs';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { TopBarService } from 'src/app/services/top-bar.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { TopBarService } from 'src/app/services/top-bar/top-bar.service';
 
 import { TopBarComponent } from './top-bar.component';
 

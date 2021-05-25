@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { TopBarService } from 'src/app/services/top-bar.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { TopBarService } from 'src/app/services/top-bar/top-bar.service';
 
 @Component({
   selector: 'app-top-bar',
