@@ -104,8 +104,13 @@
 </div>
 
 <div class="container-fluid" *ngIf="imageList.length > 0">
-  <button class="btn btn-primary btn-rounded float-btn" data-toggle="modal" data-target="#progressModal"
+  <button class="btn btn-primary btn-rounded float-btn-right" data-toggle="modal" data-target="#progressModal"
     (click)="onReconstructClicked()">RECONSTRUCT</button>
+</div>
+
+<div class="container-fluid" *ngIf="imageList.length > 0">
+  <button class="btn btn-primary btn-rounded float-btn-left" data-toggle="modal" data-target="#progressModal"
+    (click)="onClearAllClicked()">CLEAR ALL</button>
 </div>
 
 <div class="login-signup-modal" *ngIf="showLoginSignupModal" @fade>

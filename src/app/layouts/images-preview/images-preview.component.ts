@@ -127,6 +127,10 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
     )
   }
 
+  onClearAllClicked() {
+    this.imageList = [];
+  }
+
   onModelViewerClosed() {
     this.showModel = false;
     this.imageList = [];

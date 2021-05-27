@@ -130,12 +130,25 @@ input {
   background-color:cornflowerblue;
 }
 
-.float-btn {
+.float-btn-right {
   z-index: 10;
   position: fixed;
   height: 60px;
   bottom: 75px;
   right: 30px;
+  padding: 10px;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.float-btn-left {
+  z-index: 10;
+  position: fixed;
+  height: 60px;
+  bottom: 75px;
+  left: 30px;
   padding: 10px;
   border-radius: 50px;
   text-align: center;
