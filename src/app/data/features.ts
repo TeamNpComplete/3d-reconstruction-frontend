@@ -20,7 +20,7 @@ export let features: Feature[] = [
     },
 
     {
-        icon: "assets/img/feature-icons/additional_docs.svg",
+        icon: "assets/img/feature-icons/file_protection.svg",
         title: "Add additional documents",
         content: "After the initial file upload, there is also an option for you to add more images, in case you wish to save and combine multiple image files for the 3D model generation with our online service"
     },

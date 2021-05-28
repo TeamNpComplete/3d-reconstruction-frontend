@@ -48,7 +48,7 @@ describe('LoginSignupModalComponent', () => {
     }
   })
 
-  it('should register on login button clicked', () => {
+  it('should register on register button clicked', () => {
     try {
       component.onSignupSubmit(new NgForm([], []));
     } catch(err) {
